@@ -7,6 +7,7 @@ using namespace std;
 
 class ConsoleUI
 {
+setlocale(LC_ALL,"rus");
     private:
         Bank& bank;
 
@@ -22,7 +23,7 @@ class ConsoleUI
                 cin >> value;
 
                 if (cin.fail()) {
-                    cout << "Îøèáêà! Ââåäèòå öåëîå ÷èñëî.\n";
+                    cout << "ÃŽÃ¸Ã¨Ã¡ÃªÃ ! Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¶Ã¥Ã«Ã®Ã¥ Ã·Ã¨Ã±Ã«Ã®.\n";
                     clearInputBuffer();
                 }
                 else {
@@ -39,7 +40,7 @@ class ConsoleUI
                 cin >> value;
 
                 if (cin.fail() || value < 0) {
-                    cout << "Îøèáêà! Ââåäèòå ïîëîæèòåëüíîå ÷èñëî.\n";
+                    cout << "ÃŽÃ¸Ã¨Ã¡ÃªÃ ! Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¯Ã®Ã«Ã®Ã¦Ã¨Ã²Ã¥Ã«Ã¼Ã­Ã®Ã¥ Ã·Ã¨Ã±Ã«Ã®.\n";
                     clearInputBuffer();
                 }
                 else {
@@ -61,15 +62,15 @@ class ConsoleUI
 
         void showMainMenu() {
             while (true) {
-                cout << "\n=== ÁÀÍÊÎÂÑÊÎÅ ÏÐÈËÎÆÅÍÈÅ ===\n";
-                cout << "1) Ñîçäàòü íîâûé àêêàóíò\n";
-                cout << "2) Ïðîñìîòðåòü áàëàíñ\n";
-                cout << "3) Ïîïîëíèòü áàëàíñ\n";
-                cout << "4) Ñíÿòü äåíüãè\n";
-                cout << "5) Ïåðåâåñòè äåíüãè\n";
-                cout << "6) Ïîêàçàòü âñå àêêàóíòû\n";
-                cout << "0) Âûõîä\n";
-                cout << "Âûáåðèòå äåéñòâèå: ";
+                cout << "\n=== ÃÃ€ÃÃŠÃŽÃ‚Ã‘ÃŠÃŽÃ… ÃÃÃˆÃ‹ÃŽÃ†Ã…ÃÃˆÃ… ===\n";
+                cout << "1) Ã‘Ã®Ã§Ã¤Ã Ã²Ã¼ Ã­Ã®Ã¢Ã»Ã© Ã ÃªÃªÃ Ã³Ã­Ã²\n";
+                cout << "2) ÃÃ°Ã®Ã±Ã¬Ã®Ã²Ã°Ã¥Ã²Ã¼ Ã¡Ã Ã«Ã Ã­Ã±\n";
+                cout << "3) ÃÃ®Ã¯Ã®Ã«Ã­Ã¨Ã²Ã¼ Ã¡Ã Ã«Ã Ã­Ã±\n";
+                cout << "4) Ã‘Ã­Ã¿Ã²Ã¼ Ã¤Ã¥Ã­Ã¼Ã£Ã¨\n";
+                cout << "5) ÃÃ¥Ã°Ã¥Ã¢Ã¥Ã±Ã²Ã¨ Ã¤Ã¥Ã­Ã¼Ã£Ã¨\n";
+                cout << "6) ÃÃ®ÃªÃ Ã§Ã Ã²Ã¼ Ã¢Ã±Ã¥ Ã ÃªÃªÃ Ã³Ã­Ã²Ã»\n";
+                cout << "0) Ã‚Ã»ÃµÃ®Ã¤\n";
+                cout << "Ã‚Ã»Ã¡Ã¥Ã°Ã¨Ã²Ã¥ Ã¤Ã¥Ã©Ã±Ã²Ã¢Ã¨Ã¥: ";
 
                 int choice;
                 cin >> choice;
@@ -83,95 +84,95 @@ class ConsoleUI
                 case 5: transferMoney(); break;
                 case 6: showAllAccounts(); break;
                 case 0:
-                    cout << "Ñîõðàíåíèå äàííûõ...\n";
-                    cout << "Âûõîä èç ïðîãðàììû.\n";
+                    cout << "Ã‘Ã®ÃµÃ°Ã Ã­Ã¥Ã­Ã¨Ã¥ Ã¤Ã Ã­Ã­Ã»Ãµ...\n";
+                    cout << "Ã‚Ã»ÃµÃ®Ã¤ Ã¨Ã§ Ã¯Ã°Ã®Ã£Ã°Ã Ã¬Ã¬Ã».\n";
                     return;
                 default:
-                    cout << "Íåâåðíûé âûáîð! Ïîïðîáóéòå ñíîâà.\n";
+                    cout << "ÃÃ¥Ã¢Ã¥Ã°Ã­Ã»Ã© Ã¢Ã»Ã¡Ã®Ã°! ÃÃ®Ã¯Ã°Ã®Ã¡Ã³Ã©Ã²Ã¥ Ã±Ã­Ã®Ã¢Ã .\n";
                 }
             }
         }
 
         void createAccount() {
-            cout << "\n=== ÑÎÇÄÀÍÈÅ ÀÊÊÀÓÍÒÀ ===\n";
+            cout << "\n=== Ã‘ÃŽÃ‡Ã„Ã€ÃÃˆÃ… Ã€ÃŠÃŠÃ€Ã“ÃÃ’Ã€ ===\n";
 
-            string name = inputString("Ââåäèòå èìÿ: ");
-            double initialBalance = inputDouble("Ââåäèòå íà÷àëüíûé áàëàíñ: ");
+            string name = inputString("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¨Ã¬Ã¿: ");
+            double initialBalance = inputDouble("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã­Ã Ã·Ã Ã«Ã¼Ã­Ã»Ã© Ã¡Ã Ã«Ã Ã­Ã±: ");
 
             Account newAccount = bank.createAccount(name, initialBalance);
-            cout << "Àêêàóíò óñïåøíî ñîçäàí!\n";
-            cout << "ID âàøåãî àêêàóíòà: " << newAccount.getId() << "\n";
-            cout << "Çàïîìíèòå ýòîò ID äëÿ äîñòóïà ê àêêàóíòó!\n";
+            cout << "Ã€ÃªÃªÃ Ã³Ã­Ã² Ã³Ã±Ã¯Ã¥Ã¸Ã­Ã® Ã±Ã®Ã§Ã¤Ã Ã­!\n";
+            cout << "ID Ã¢Ã Ã¸Ã¥Ã£Ã® Ã ÃªÃªÃ Ã³Ã­Ã²Ã : " << newAccount.getId() << "\n";
+            cout << "Ã‡Ã Ã¯Ã®Ã¬Ã­Ã¨Ã²Ã¥ Ã½Ã²Ã®Ã² ID Ã¤Ã«Ã¿ Ã¤Ã®Ã±Ã²Ã³Ã¯Ã  Ãª Ã ÃªÃªÃ Ã³Ã­Ã²Ã³!\n";
         }
 
         void showBalance() {
-            cout << "\n=== ÏÐÎÑÌÎÒÐ ÁÀËÀÍÑÀ ===\n";
+            cout << "\n=== ÃÃÃŽÃ‘ÃŒÃŽÃ’Ã ÃÃ€Ã‹Ã€ÃÃ‘Ã€ ===\n";
 
-            int id = inputInt("Ââåäèòå ID àêêàóíòà: ");
+            int id = inputInt("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ID Ã ÃªÃªÃ Ã³Ã­Ã²Ã : ");
             Account* account = bank.findAccount(id);
 
             if (account) {
-                cout << "Âëàäåëåö: " << account->getName() << "\n";
-                cout << "Áàëàíñ: " << account->getBalance() << " ðóá.\n";
+                cout << "Ã‚Ã«Ã Ã¤Ã¥Ã«Ã¥Ã¶: " << account->getName() << "\n";
+                cout << "ÃÃ Ã«Ã Ã­Ã±: " << account->getBalance() << " Ã°Ã³Ã¡.\n";
             }
             else {
-                cout << "Àêêàóíò ñ ID " << id << " íå íàéäåí!\n";
+                cout << "Ã€ÃªÃªÃ Ã³Ã­Ã² Ã± ID " << id << " Ã­Ã¥ Ã­Ã Ã©Ã¤Ã¥Ã­!\n";
             }
         }
 
         void depositMoney() {
-            cout << "\n=== ÏÎÏÎËÍÅÍÈÅ ÁÀËÀÍÑÀ ===\n";
+            cout << "\n=== ÃÃŽÃÃŽÃ‹ÃÃ…ÃÃˆÃ… ÃÃ€Ã‹Ã€ÃÃ‘Ã€ ===\n";
 
-            int id = inputInt("Ââåäèòå ID àêêàóíòà: ");
+            int id = inputInt("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ID Ã ÃªÃªÃ Ã³Ã­Ã²Ã : ");
             Account* account = bank.findAccount(id);
 
             if (account) {
-                cout << "Òåêóùèé áàëàíñ: " << account->getBalance() << " ðóá.\n";
-                double amount = inputDouble("Ââåäèòå ñóììó äëÿ ïîïîëíåíèÿ: ");
+                cout << "Ã’Ã¥ÃªÃ³Ã¹Ã¨Ã© Ã¡Ã Ã«Ã Ã­Ã±: " << account->getBalance() << " Ã°Ã³Ã¡.\n";
+                double amount = inputDouble("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã±Ã³Ã¬Ã¬Ã³ Ã¤Ã«Ã¿ Ã¯Ã®Ã¯Ã®Ã«Ã­Ã¥Ã­Ã¨Ã¿: ");
 
                 if (account->deposit(amount)) {
-                    cout << "Óñïåøíî! Íîâûé áàëàíñ: " << account->getBalance() << " ðóá.\n";
+                    cout << "Ã“Ã±Ã¯Ã¥Ã¸Ã­Ã®! ÃÃ®Ã¢Ã»Ã© Ã¡Ã Ã«Ã Ã­Ã±: " << account->getBalance() << " Ã°Ã³Ã¡.\n";
                 }
                 else {
-                    cout << "Îøèáêà ïðè ïîïîëíåíèè!\n";
+                    cout << "ÃŽÃ¸Ã¨Ã¡ÃªÃ  Ã¯Ã°Ã¨ Ã¯Ã®Ã¯Ã®Ã«Ã­Ã¥Ã­Ã¨Ã¨!\n";
                 }
             }
             else {
-                cout << "Àêêàóíò ñ ID " << id << " íå íàéäåí!\n";
+                cout << "Ã€ÃªÃªÃ Ã³Ã­Ã² Ã± ID " << id << " Ã­Ã¥ Ã­Ã Ã©Ã¤Ã¥Ã­!\n";
             }
         }
 
         void withdrawMoney() {
-            cout << "\n=== ÑÍßÒÈÅ ÄÅÍÅÃ ===\n";
+            cout << "\n=== Ã‘ÃÃŸÃ’ÃˆÃ… Ã„Ã…ÃÃ…Ãƒ ===\n";
 
-            int id = inputInt("Ââåäèòå ID àêêàóíòà: ");
+            int id = inputInt("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ID Ã ÃªÃªÃ Ã³Ã­Ã²Ã : ");
             Account* account = bank.findAccount(id);
 
             if (account) {
-                cout << "Òåêóùèé áàëàíñ: " << account->getBalance() << " ðóá.\n";
-                double amount = inputDouble("Ââåäèòå ñóììó äëÿ ñíÿòèÿ: ");
+                cout << "Ã’Ã¥ÃªÃ³Ã¹Ã¨Ã© Ã¡Ã Ã«Ã Ã­Ã±: " << account->getBalance() << " Ã°Ã³Ã¡.\n";
+                double amount = inputDouble("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã±Ã³Ã¬Ã¬Ã³ Ã¤Ã«Ã¿ Ã±Ã­Ã¿Ã²Ã¨Ã¿: ");
 
                 if (account->withdraw(amount)) {
-                    cout << "Óñïåøíî! Ñíÿòî: " << amount << " ðóá.\n";
-                    cout << "Íîâûé áàëàíñ: " << account->getBalance() << " ðóá.\n";
+                    cout << "Ã“Ã±Ã¯Ã¥Ã¸Ã­Ã®! Ã‘Ã­Ã¿Ã²Ã®: " << amount << " Ã°Ã³Ã¡.\n";
+                    cout << "ÃÃ®Ã¢Ã»Ã© Ã¡Ã Ã«Ã Ã­Ã±: " << account->getBalance() << " Ã°Ã³Ã¡.\n";
                 }
                 else {
-                    cout << "Îøèáêà! Íåäîñòàòî÷íî ñðåäñòâ èëè íåâåðíàÿ ñóììà.\n";
+                    cout << "ÃŽÃ¸Ã¨Ã¡ÃªÃ ! ÃÃ¥Ã¤Ã®Ã±Ã²Ã Ã²Ã®Ã·Ã­Ã® Ã±Ã°Ã¥Ã¤Ã±Ã²Ã¢ Ã¨Ã«Ã¨ Ã­Ã¥Ã¢Ã¥Ã°Ã­Ã Ã¿ Ã±Ã³Ã¬Ã¬Ã .\n";
                 }
             }
             else {
-                cout << "Àêêàóíò ñ ID " << id << " íå íàéäåí!\n";
+                cout << "Ã€ÃªÃªÃ Ã³Ã­Ã² Ã± ID " << id << " Ã­Ã¥ Ã­Ã Ã©Ã¤Ã¥Ã­!\n";
             }
         }
 
         void transferMoney() {
-            cout << "\n=== ÏÅÐÅÂÎÄ ÄÅÍÅÃ ===\n";
+            cout << "\n=== ÃÃ…ÃÃ…Ã‚ÃŽÃ„ Ã„Ã…ÃÃ…Ãƒ ===\n";
 
-            int fromId = inputInt("Ââåäèòå ID âàøåãî àêêàóíòà: ");
-            int toId = inputInt("Ââåäèòå ID àêêàóíòà ïîëó÷àòåëÿ: ");
+            int fromId = inputInt("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ID Ã¢Ã Ã¸Ã¥Ã£Ã® Ã ÃªÃªÃ Ã³Ã­Ã²Ã : ");
+            int toId = inputInt("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ID Ã ÃªÃªÃ Ã³Ã­Ã²Ã  Ã¯Ã®Ã«Ã³Ã·Ã Ã²Ã¥Ã«Ã¿: ");
 
             if (fromId == toId) {
-                cout << "Îøèáêà! Íåëüçÿ ïåðåâåñòè äåíüãè ñàìîìó ñåáå.\n";
+                cout << "ÃŽÃ¸Ã¨Ã¡ÃªÃ ! ÃÃ¥Ã«Ã¼Ã§Ã¿ Ã¯Ã¥Ã°Ã¥Ã¢Ã¥Ã±Ã²Ã¨ Ã¤Ã¥Ã­Ã¼Ã£Ã¨ Ã±Ã Ã¬Ã®Ã¬Ã³ Ã±Ã¥Ã¡Ã¥.\n";
                 return;
             }
 
@@ -179,34 +180,35 @@ class ConsoleUI
             Account* toAccount = bank.findAccount(toId);
 
             if (!fromAccount) {
-                cout << "Àêêàóíò îòïðàâèòåëÿ íå íàéäåí!\n";
+                cout << "Ã€ÃªÃªÃ Ã³Ã­Ã² Ã®Ã²Ã¯Ã°Ã Ã¢Ã¨Ã²Ã¥Ã«Ã¿ Ã­Ã¥ Ã­Ã Ã©Ã¤Ã¥Ã­!\n";
                 return;
             }
 
             if (!toAccount) {
-                std::cout << "Àêêàóíò ïîëó÷àòåëÿ íå íàéäåí!\n";
+                std::cout << "Ã€ÃªÃªÃ Ã³Ã­Ã² Ã¯Ã®Ã«Ã³Ã·Ã Ã²Ã¥Ã«Ã¿ Ã­Ã¥ Ã­Ã Ã©Ã¤Ã¥Ã­!\n";
                 return;
             }
 
-            cout << "Îòïðàâèòåëü: " << fromAccount->getName() << "\n";
-            cout << "Òåêóùèé áàëàíñ: " << fromAccount->getBalance() << " ðóá.\n";
-            cout << "Ïîëó÷àòåëü: " << toAccount->getName() << "\n\n";
+            cout << "ÃŽÃ²Ã¯Ã°Ã Ã¢Ã¨Ã²Ã¥Ã«Ã¼: " << fromAccount->getName() << "\n";
+            cout << "Ã’Ã¥ÃªÃ³Ã¹Ã¨Ã© Ã¡Ã Ã«Ã Ã­Ã±: " << fromAccount->getBalance() << " Ã°Ã³Ã¡.\n";
+            cout << "ÃÃ®Ã«Ã³Ã·Ã Ã²Ã¥Ã«Ã¼: " << toAccount->getName() << "\n\n";
 
-            double amount = inputDouble("Ââåäèòå ñóììó äëÿ ïåðåâîäà: ");
+            double amount = inputDouble("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã±Ã³Ã¬Ã¬Ã³ Ã¤Ã«Ã¿ Ã¯Ã¥Ã°Ã¥Ã¢Ã®Ã¤Ã : ");
 
             if (bank.transferMoney(fromId, toId, amount)) {
-                cout << "Ïåðåâîä óñïåøíî âûïîëíåí!\n";
-                cout << "Íîâûé áàëàíñ îòïðàâèòåëÿ: " << fromAccount->getBalance() << " ðóá.\n";
+                cout << "ÃÃ¥Ã°Ã¥Ã¢Ã®Ã¤ Ã³Ã±Ã¯Ã¥Ã¸Ã­Ã® Ã¢Ã»Ã¯Ã®Ã«Ã­Ã¥Ã­!\n";
+                cout << "ÃÃ®Ã¢Ã»Ã© Ã¡Ã Ã«Ã Ã­Ã± Ã®Ã²Ã¯Ã°Ã Ã¢Ã¨Ã²Ã¥Ã«Ã¿: " << fromAccount->getBalance() << " Ã°Ã³Ã¡.\n";
             }
             else {
-                cout << "Îøèáêà ïåðåâîäà! Ïðîâåðüòå áàëàíñ è ïîâòîðèòå ïîïûòêó.\n";
+                cout << "ÃŽÃ¸Ã¨Ã¡ÃªÃ  Ã¯Ã¥Ã°Ã¥Ã¢Ã®Ã¤Ã ! ÃÃ°Ã®Ã¢Ã¥Ã°Ã¼Ã²Ã¥ Ã¡Ã Ã«Ã Ã­Ã± Ã¨ Ã¯Ã®Ã¢Ã²Ã®Ã°Ã¨Ã²Ã¥ Ã¯Ã®Ã¯Ã»Ã²ÃªÃ³.\n";
             }
         }
 
         void showAllAccounts() {
-            cout << "\n=== ÂÑÅ ÀÊÊÀÓÍÒÛ Â ÑÈÑÒÅÌÅ ===\n";
-            cout << "Ôóíêöèÿ ïîêàçà âñåõ àêêàóíòîâ âðåìåííî íåäîñòóïíà.\n";
-            cout << "Ðàçðàáîò÷èê Bank åùå íå ðåàëèçîâàë ìåòîä getAllAccounts().\n";
+            cout << "\n=== Ã‚Ã‘Ã… Ã€ÃŠÃŠÃ€Ã“ÃÃ’Ã› Ã‚ Ã‘ÃˆÃ‘Ã’Ã…ÃŒÃ… ===\n";
+            cout << "Ã”Ã³Ã­ÃªÃ¶Ã¨Ã¿ Ã¯Ã®ÃªÃ Ã§Ã  Ã¢Ã±Ã¥Ãµ Ã ÃªÃªÃ Ã³Ã­Ã²Ã®Ã¢ Ã¢Ã°Ã¥Ã¬Ã¥Ã­Ã­Ã® Ã­Ã¥Ã¤Ã®Ã±Ã²Ã³Ã¯Ã­Ã .\n";
+            cout << "ÃÃ Ã§Ã°Ã Ã¡Ã®Ã²Ã·Ã¨Ãª Bank Ã¥Ã¹Ã¥ Ã­Ã¥ Ã°Ã¥Ã Ã«Ã¨Ã§Ã®Ã¢Ã Ã« Ã¬Ã¥Ã²Ã®Ã¤ getAllAccounts().\n";
         };
 };
+
 
