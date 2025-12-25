@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <locale>
 #include "Bank.h"
 using namespace std;
 
@@ -22,7 +23,7 @@ class ConsoleUI
                 cin >> value;
 
                 if (cin.fail()) {
-                    cout << "Îøèáêà! Ââåäèòå öåëîå ÷èñëî.\n";
+                    cout << "Ошибка! Введите целое число.\n";
                     clearInputBuffer();
                 }
                 else {
@@ -39,7 +40,7 @@ class ConsoleUI
                 cin >> value;
 
                 if (cin.fail() || value < 0) {
-                    cout << "Îøèáêà! Ââåäèòå ïîëîæèòåëüíîå ÷èñëî.\n";
+                    cout << "Ошибка! Введите положительное число.\n";
                     clearInputBuffer();
                 }
                 else {
@@ -58,19 +59,20 @@ class ConsoleUI
 
     public:
         ConsoleUI(Bank& b) : bank(b) {
-        setlocale(LC_ALL,"rus");
+            setlocale(LC_ALL, "Russian");
         }
+        
         void showMainMenu() {
             while (true) {
-                cout << "\n=== ÁÀÍÊÎÂÑÊÎÅ ÏÐÈËÎÆÅÍÈÅ ===\n";
-                cout << "1) Ñîçäàòü íîâûé àêêàóíò\n";
-                cout << "2) Ïðîñìîòðåòü áàëàíñ\n";
-                cout << "3) Ïîïîëíèòü áàëàíñ\n";
-                cout << "4) Ñíÿòü äåíüãè\n";
-                cout << "5) Ïåðåâåñòè äåíüãè\n";
-                cout << "6) Ïîêàçàòü âñå àêêàóíòû\n";
-                cout << "0) Âûõîä\n";
-                cout << "Âûáåðèòå äåéñòâèå: ";
+                cout << "\n=== БАНКОВСКОЕ ПРИЛОЖЕНИЕ ===\n";
+                cout << "1) Создать новый аккаунт\n";
+                cout << "2) Просмотреть баланс\n";
+                cout << "3) Пополнить баланс\n";
+                cout << "4) Снять деньги\n";
+                cout << "5) Перевести деньги\n";
+                cout << "6) Показать все аккаунты\n";
+                cout << "0) Выход\n";
+                cout << "Выберите действие: ";
 
                 int choice;
                 cin >> choice;
@@ -84,95 +86,95 @@ class ConsoleUI
                 case 5: transferMoney(); break;
                 case 6: showAllAccounts(); break;
                 case 0:
-                    cout << "Ñîõðàíåíèå äàííûõ...\n";
-                    cout << "Âûõîä èç ïðîãðàììû.\n";
+                    cout << "Сохранение данных...\n";
+                    cout << "Выход из программы.\n";
                     return;
                 default:
-                    cout << "Íåâåðíûé âûáîð! Ïîïðîáóéòå ñíîâà.\n";
+                    cout << "Неверный выбор! Попробуйте снова.\n";
                 }
             }
         }
 
         void createAccount() {
-            cout << "\n=== ÑÎÇÄÀÍÈÅ ÀÊÊÀÓÍÒÀ ===\n";
+            cout << "\n=== СОЗДАНИЕ АККАУНТА ===\n";
 
-            string name = inputString("Ââåäèòå èìÿ: ");
-            double initialBalance = inputDouble("Ââåäèòå íà÷àëüíûé áàëàíñ: ");
+            string name = inputString("Введите имя: ");
+            double initialBalance = inputDouble("Введите начальный баланс: ");
 
             Account newAccount = bank.createAccount(name, initialBalance);
-            cout << "Àêêàóíò óñïåøíî ñîçäàí!\n";
-            cout << "ID âàøåãî àêêàóíòà: " << newAccount.getId() << "\n";
-            cout << "Çàïîìíèòå ýòîò ID äëÿ äîñòóïà ê àêêàóíòó!\n";
+            cout << "Аккаунт успешно создан!\n";
+            cout << "ID вашего аккаунта: " << newAccount.getId() << "\n";
+            cout << "Запомните этот ID для доступа к аккаунту!\n";
         }
 
         void showBalance() {
-            cout << "\n=== ÏÐÎÑÌÎÒÐ ÁÀËÀÍÑÀ ===\n";
+            cout << "\n=== ПРОСМОТР БАЛАНСА ===\n";
 
-            int id = inputInt("Ââåäèòå ID àêêàóíòà: ");
+            int id = inputInt("Введите ID аккаунта: ");
             Account* account = bank.findAccount(id);
 
             if (account) {
-                cout << "Âëàäåëåö: " << account->getName() << "\n";
-                cout << "Áàëàíñ: " << account->getBalance() << " ðóá.\n";
+                cout << "Владелец: " << account->getName() << "\n";
+                cout << "Баланс: " << account->getBalance() << " руб.\n";
             }
             else {
-                cout << "Àêêàóíò ñ ID " << id << " íå íàéäåí!\n";
+                cout << "Аккаунт с ID " << id << " не найден!\n";
             }
         }
 
         void depositMoney() {
-            cout << "\n=== ÏÎÏÎËÍÅÍÈÅ ÁÀËÀÍÑÀ ===\n";
+            cout << "\n=== ПОПОЛНЕНИЕ БАЛАНСА ===\n";
 
-            int id = inputInt("Ââåäèòå ID àêêàóíòà: ");
+            int id = inputInt("Введите ID аккаунта: ");
             Account* account = bank.findAccount(id);
 
             if (account) {
-                cout << "Òåêóùèé áàëàíñ: " << account->getBalance() << " ðóá.\n";
-                double amount = inputDouble("Ââåäèòå ñóììó äëÿ ïîïîëíåíèÿ: ");
+                cout << "Текущий баланс: " << account->getBalance() << " руб.\n";
+                double amount = inputDouble("Введите сумму для пополнения: ");
 
                 if (account->deposit(amount)) {
-                    cout << "Óñïåøíî! Íîâûé áàëàíñ: " << account->getBalance() << " ðóá.\n";
+                    cout << "Успешно! Новый баланс: " << account->getBalance() << " руб.\n";
                 }
                 else {
-                    cout << "Îøèáêà ïðè ïîïîëíåíèè!\n";
+                    cout << "Ошибка при пополнении!\n";
                 }
             }
             else {
-                cout << "Àêêàóíò ñ ID " << id << " íå íàéäåí!\n";
+                cout << "Аккаунт с ID " << id << " не найден!\n";
             }
         }
 
         void withdrawMoney() {
-            cout << "\n=== ÑÍßÒÈÅ ÄÅÍÅÃ ===\n";
+            cout << "\n=== СНЯТИЕ ДЕНЕГ ===\n";
 
-            int id = inputInt("Ââåäèòå ID àêêàóíòà: ");
+            int id = inputInt("Введите ID аккаунта: ");
             Account* account = bank.findAccount(id);
 
             if (account) {
-                cout << "Òåêóùèé áàëàíñ: " << account->getBalance() << " ðóá.\n";
-                double amount = inputDouble("Ââåäèòå ñóììó äëÿ ñíÿòèÿ: ");
+                cout << "Текущий баланс: " << account->getBalance() << " руб.\n";
+                double amount = inputDouble("Введите сумму для снятия: ");
 
                 if (account->withdraw(amount)) {
-                    cout << "Óñïåøíî! Ñíÿòî: " << amount << " ðóá.\n";
-                    cout << "Íîâûé áàëàíñ: " << account->getBalance() << " ðóá.\n";
+                    cout << "Успешно! Снято: " << amount << " руб.\n";
+                    cout << "Новый баланс: " << account->getBalance() << " руб.\n";
                 }
                 else {
-                    cout << "Îøèáêà! Íåäîñòàòî÷íî ñðåäñòâ èëè íåâåðíàÿ ñóììà.\n";
+                    cout << "Ошибка! Недостаточно средств или неверная сумма.\n";
                 }
             }
             else {
-                cout << "Àêêàóíò ñ ID " << id << " íå íàéäåí!\n";
+                cout << "Аккаунт с ID " << id << " не найден!\n";
             }
         }
 
         void transferMoney() {
-            cout << "\n=== ÏÅÐÅÂÎÄ ÄÅÍÅÃ ===\n";
+            cout << "\n=== ПЕРЕВОД ДЕНЕГ ===\n";
 
-            int fromId = inputInt("Ââåäèòå ID âàøåãî àêêàóíòà: ");
-            int toId = inputInt("Ââåäèòå ID àêêàóíòà ïîëó÷àòåëÿ: ");
+            int fromId = inputInt("Введите ID вашего аккаунта: ");
+            int toId = inputInt("Введите ID аккаунта получателя: ");
 
             if (fromId == toId) {
-                cout << "Îøèáêà! Íåëüçÿ ïåðåâåñòè äåíüãè ñàìîìó ñåáå.\n";
+                cout << "Ошибка! Нельзя перевести деньги самому себе.\n";
                 return;
             }
 
@@ -180,37 +182,34 @@ class ConsoleUI
             Account* toAccount = bank.findAccount(toId);
 
             if (!fromAccount) {
-                cout << "Àêêàóíò îòïðàâèòåëÿ íå íàéäåí!\n";
+                cout << "Аккаунт отправителя не найден!\n";
                 return;
             }
 
             if (!toAccount) {
-                std::cout << "Àêêàóíò ïîëó÷àòåëÿ íå íàéäåí!\n";
+                cout << "Аккаунт получателя не найден!\n";
                 return;
             }
 
-            cout << "Îòïðàâèòåëü: " << fromAccount->getName() << "\n";
-            cout << "Òåêóùèé áàëàíñ: " << fromAccount->getBalance() << " ðóá.\n";
-            cout << "Ïîëó÷àòåëü: " << toAccount->getName() << "\n\n";
+            cout << "Отправитель: " << fromAccount->getName() << "\n";
+            cout << "Текущий баланс: " << fromAccount->getBalance() << " руб.\n";
+            cout << "Получатель: " << toAccount->getName() << "\n\n";
 
-            double amount = inputDouble("Ââåäèòå ñóììó äëÿ ïåðåâîäà: ");
+            double amount = inputDouble("Введите сумму для перевода: ");
 
             if (bank.transferMoney(fromId, toId, amount)) {
-                cout << "Ïåðåâîä óñïåøíî âûïîëíåí!\n";
-                cout << "Íîâûé áàëàíñ îòïðàâèòåëÿ: " << fromAccount->getBalance() << " ðóá.\n";
+                cout << "Перевод успешно выполнен!\n";
+                cout << "Новый баланс отправителя: " << fromAccount->getBalance() << " руб.\n";
             }
             else {
-                cout << "Îøèáêà ïåðåâîäà! Ïðîâåðüòå áàëàíñ è ïîâòîðèòå ïîïûòêó.\n";
+                cout << "Ошибка перевода! Проверьте баланс и повторите попытку.\n";
             }
         }
 
         void showAllAccounts() {
-            cout << "\n=== ÂÑÅ ÀÊÊÀÓÍÒÛ Â ÑÈÑÒÅÌÅ ===\n";
-            cout << "Ôóíêöèÿ ïîêàçà âñåõ àêêàóíòîâ âðåìåííî íåäîñòóïíà.\n";
-            cout << "Ðàçðàáîò÷èê Bank åùå íå ðåàëèçîâàë ìåòîä getAllAccounts().\n";
-        };
+            cout << "\n=== ВСЕ АККАУНТЫ В СИСТЕМЕ ===\n";
+            cout << "Функция показа всех аккаунтов временно недоступна.\n";
+            cout << "Разработчик Bank еще не реализовал метод getAllAccounts().\n";
+        }
 };
-
-
-
-
+               
