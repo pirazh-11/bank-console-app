@@ -57,8 +57,9 @@ class ConsoleUI
         }
 
     public:
-        ConsoleUI(Bank& b) : bank(b) {}
+        ConsoleUI(Bank& b) : bank(b) {
         setlocale(LC_ALL,"rus");
+        }
         void showMainMenu() {
             while (true) {
                 cout << "\n=== ÁÀÍÊÎÂÑÊÎÅ ÏÐÈËÎÆÅÍÈÅ ===\n";
@@ -209,6 +210,7 @@ class ConsoleUI
             cout << "Ðàçðàáîò÷èê Bank åùå íå ðåàëèçîâàë ìåòîä getAllAccounts().\n";
         };
 };
+
 
 
 
