@@ -7,7 +7,6 @@ using namespace std;
 
 class ConsoleUI
 {
-setlocale(LC_ALL,"rus");
     private:
         Bank& bank;
 
@@ -59,7 +58,7 @@ setlocale(LC_ALL,"rus");
 
     public:
         ConsoleUI(Bank& b) : bank(b) {}
-
+        setlocale(LC_ALL,"rus");
         void showMainMenu() {
             while (true) {
                 cout << "\n=== ÁÀÍÊÎÂÑÊÎÅ ÏÐÈËÎÆÅÍÈÅ ===\n";
@@ -210,5 +209,6 @@ setlocale(LC_ALL,"rus");
             cout << "Ðàçðàáîò÷èê Bank åùå íå ðåàëèçîâàë ìåòîä getAllAccounts().\n";
         };
 };
+
 
 
